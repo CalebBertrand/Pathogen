@@ -1,7 +1,7 @@
 var particle = function(X, Y, C, Kind, Func) {
-	this.pos = new PVector(X, Y);
-	this.vel = new PVector(0, 0);
-	this.accel = new PVector(0, 0);
+	this.pos = createVector(X, Y);
+	this.vel = createVector();
+	this.accel = createVector();
 	this.c = C;
 	this.isDead = false;
 	this.kind = Kind;
@@ -24,7 +24,7 @@ particle.prototype.attract = function(target, pow) {
 	this.vel.mult(0.1);
 	this.accel.mult(0.1);
 
-	var force = PVector.sub(this.pos, target.pos);
+	var force = p5.Vector.sub(this.pos, target.pos);
     var distance = force.mag();
     var strength = pow*2 / (distance);
     force.normalize();
@@ -32,7 +32,7 @@ particle.prototype.attract = function(target, pow) {
     this.accel.sub(force);
 };
 particle.prototype.checkForCollision = function(target) {
-	var d = PVector.sub(this.pos, target.pos);
+	var d = p5.Vector.sub(this.pos, target.pos);
 	if (d.mag() < target.s) {
 		return true;
 	}
@@ -52,10 +52,12 @@ particle.prototype.run = function() {
 			this.draw();
 		}
 };
-
-var particles = [];
-for (var i = 0; i < 15; i++) {
-	particles.push(new particle(sin(random(0, TWO_PI))*random(0, m.radius), cos(random(0, TWO_PI))*random(0, m.radius), color(255, 234, 0), "glucose", function() {
-		player.glucose++;
-	}));
-}
+function createParticles() {
+	var particles = [];
+	for (var i = 0; i < 15; i++) {
+		particles.push(new particle(sin(random(0, TWO_PI))*random(0, m.radius), cos(random(0, TWO_PI))*random(0, m.radius), color(255, 234, 0), "glucose", function() {
+			player.glucose++;
+		}));
+	}
+	return particles;
+};

@@ -1,12 +1,12 @@
-void draw(){
-	pushMatrix();
+function draw() {
+	push();
 	translate(width/2-player.pos.x, width/2-player.pos.y);
 	m.run();
 	particles.runParticles();
 	cells.run();
-	popMatrix();
+	pop();
 	player.stats();
- };
- void mouseMoved() {
+};
+function mouseMoved() {
  	player.control();
- }
+};

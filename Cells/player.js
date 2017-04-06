@@ -25,6 +25,8 @@ var player = function(X, Y, velL, S, turnSmooth) {
 	//ammount of chemicals
 	this.chem = 0;
 };
+bacterium.prototype = Object.create(cell.prototype);
+bacterium.prototype = Object.create(bacterium.prototype);
 player.prototype.control = function() {
 		var angle = createVector(mouseX-width/2, mouseY-height/2);
 		angle.div(1000);
@@ -51,6 +53,7 @@ player.prototype.stats = function() {
 	pop();
 };
 
+var cells = [];
 for (var i = 0; i < 3; i++) {
 	cells.push(new bacterium(random(-m.radius/1.5, m.radius/1.5), random(-m.radius/1.5, m.radius/1.5), 2.5, random(20, 60)));
 }

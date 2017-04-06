@@ -1,7 +1,6 @@
 new p5();
-
-function setup()
-{
+var particles;
+function setup() {
 	createCanvas(window.innerWidth, window.innerHeight);
-	createParticles();
+	particles = createParticles();
 };

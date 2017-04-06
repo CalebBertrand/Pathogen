@@ -23,5 +23,5 @@ LAB_map.prototype.update = function() {
 LAB_map.prototype.run = function() {
 	this.update();
 	this.draw();
-}
+};
 var m = new LAB_map(600);
