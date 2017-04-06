@@ -1,5 +1,6 @@
-Array.prototype.run = function() {
+Array.prototype.iterate = function() {
 	for (var i = this.length-1; i >= 0; i--) {
+		console.log(this[i].run);
 		this[i].run();
 		if (this[i].isDead) {
 			this.splice(i, 1);
@@ -8,7 +9,7 @@ Array.prototype.run = function() {
 };
 //run particles should be used when you want an array to be run that 
 //repositions the particles random instead of splicing them, for performance
-Array.prototype.runParticles = function() {
+Array.prototype.iterateParticles = function() {
 	for (var i = this.length-1; i >= 0; i--) {
 		this[i].run();
 		if (this[i].isDead) {
