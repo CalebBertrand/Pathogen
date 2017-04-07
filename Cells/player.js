@@ -25,13 +25,12 @@ var player = function(X, Y, velL, S, turnSmooth) {
 	//ammount of chemicals
 	this.chem = 0;
 };
-bacterium.prototype = Object.create(cell.prototype);
-bacterium.prototype = Object.create(bacterium.prototype);
+player.prototype = Object.create(cell.prototype);
+player.prototype = Object.create(bacterium.prototype);
 player.prototype.control = function() {
 		var angle = createVector(mouseX-width/2, mouseY-height/2);
-		angle.div(1000);
-		angle.mult(angle);
-		this.accel.add(angle*this.turnSmoothing);
+		angle.mult(0.5*this.turnSmoothing);
+		this.accel.add(angle);
 };
 player.prototype.stats = function() {
 	if (this.glucose > 0) {

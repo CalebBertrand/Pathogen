@@ -53,11 +53,11 @@ particle.prototype.run = function() {
 		}
 };
 function createParticles() {
-	var particles = [];
+	var p = [];
 	for (var i = 0; i < 15; i++) {
-		particles.push(new particle(sin(random(0, TWO_PI))*random(0, m.radius), cos(random(0, TWO_PI))*random(0, m.radius), color(255, 234, 0), "glucose", function() {
+		p.push(new particle(sin(random(0, TWO_PI))*random(0, m.radius), cos(random(0, TWO_PI))*random(0, m.radius), color(255, 234, 0), "glucose", function() {
 			player.glucose++;
 		}));
 	}
-	return particles;
+	return p;
 };

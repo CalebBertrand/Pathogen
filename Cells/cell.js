@@ -10,7 +10,8 @@ cell.prototype.physics = function() {
 	this.vel.limit(this.velLimit);
 	this.pos.add(this.vel);
 	this.pos.limit(m.radius-this.s);
-	this.accel.mult(0);
+	this.vel.mult(0.99);
+	this.accel.set(0);
 };
 cell.prototype.run = function() {
 	this.physics();

@@ -8,14 +8,13 @@ LAB_map.prototype.draw = function() {
 	stroke(190, 30, 30);
 	ellipse(0, 0, this.radius*2, this.radius*2);
 
-	var gradientS = this.radius;
-	var grd=drawingContext.createRadialGradient(75,50,5,90,60,100);
+	var grd=drawingContext.createRadialGradient(0,0,this.radius/4,0,0,this.radius/2);
 	grd.addColorStop(0,"rgb(255, 41, 30)");
 	grd.addColorStop(1,"rgb(255, 0, 0)");
 
 	// Fill with gradient
 	drawingContext.fillStyle = grd;
-	drawingContext.fillRect(10,10,150,80);
+	drawingContext.fillRect(-this.radius/2,-this.radius/2,this.radius,this.radius);
 };
 LAB_map.prototype.update = function() {
 	perlin+=0.01;

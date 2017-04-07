@@ -1,6 +1,5 @@
 Array.prototype.iterate = function() {
 	for (var i = this.length-1; i >= 0; i--) {
-		console.log(this[i].run);
 		this[i].run();
 		if (this[i].isDead) {
 			this.splice(i, 1);
