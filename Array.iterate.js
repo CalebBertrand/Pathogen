@@ -12,7 +12,7 @@ Array.prototype.iterateParticles = function() {
 	for (var i = this.length-1; i >= 0; i--) {
 		this[i].run();
 		if (this[i].isDead) {
-			this[i].pos.set(sin(random(0, TWO_PI))*random(0, m.radius-20), cos(random(0, TWO_PI))*random(0, m.radius-20));
+			this[i].pos.set(cos(random(0, TWO_PI))*random(0, m.radius-20), sin(random(0, TWO_PI))*random(0, m.radius-20));
 			this[i].isDead = false;
 		}
 	}

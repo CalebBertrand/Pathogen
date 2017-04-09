@@ -43,7 +43,7 @@ particle.prototype.run = function() {
 			if (d < player.pm/6 + player.s) {
 				if (this.checkForCollision(player)) {
 					this.isDead = true;
-					player.glucose++;
+					this.affect();
 				}else{
 					this.physics();
 					this.attract(player, player.pm);

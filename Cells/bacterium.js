@@ -9,7 +9,7 @@ var bacterium = function(X, Y, velL, S) {
 };
 bacterium.prototype = Object.create(cell.prototype);
 
-bacterium.prototype.draw = function(){
+bacterium.prototype.draw = function() {
 	//Blobbiness and plasma membrane
 	var p = 0;
 	push();

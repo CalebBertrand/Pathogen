@@ -46,9 +46,12 @@ player.prototype.stats = function() {
 	//glucose bar
 	fill(255, 180, 0);
 	rect(0, 0, this.glucose*5, 10);
+	//chem bar
+	fill(196, 93, 193);
+	rect(0, 10, this.chem*5, 10);
 	//energy bar
 	fill(255, map(noise(perlin), 0, 1, 200, 225), 0);
-	rect(0, 10, this.energy*3, 10);
+	rect(0, 20, this.energy*3, 10);
 	pop();
 };
 
