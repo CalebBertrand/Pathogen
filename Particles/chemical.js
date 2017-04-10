@@ -31,7 +31,6 @@ function createParticles() {
 		}));
 		p.push(new chemical(cos(random(0, TWO_PI))*random(0, m.radius), sin(random(0, TWO_PI))*random(0, m.radius), color(196, 93, 193), "chemical", function() {
 			player.chem++;
-			console.log("yaahoo!!!");
 		}));
 	}
 	return p;

@@ -29,7 +29,11 @@ particle.prototype.attract = function(target, pow) {
     var strength = pow*2 / (distance);
     force.normalize();
     force.mult(strength);
-    this.accel.sub(force);
+    if (this.kind === "toxic") {
+    	this.accel.add(force.mult(0.1));
+    }else {
+        this.accel.sub(force);
+    }
 };
 particle.prototype.checkForCollision = function(target) {
 	var d = p5.Vector.sub(this.pos, target.pos);

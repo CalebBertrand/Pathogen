@@ -41,7 +41,7 @@ player.prototype.stats = function() {
 	//transparent dark background
 	noStroke();
 	fill(30, 30, 30, 135);
-	rect(0, 0, width, 45);
+	rect(0, 0, width, 50);
 
 	//glucose bar
 	fill(255, 180, 0);
@@ -52,6 +52,9 @@ player.prototype.stats = function() {
 	//energy bar
 	fill(255, map(noise(perlin), 0, 1, 200, 225), 0);
 	rect(0, 20, this.energy*3, 10);
+	//health
+	fill(216, 21, 21);
+	rect(0, 30, this.hp*3, 10);
 	pop();
 };
 

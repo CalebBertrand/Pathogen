@@ -4,3 +4,8 @@ function setup() {
 	createCanvas(window.innerWidth, window.innerHeight);
 	particles = createParticles();
 };
+function runEvery(frames, func) {
+	window.requestAnimationFrame(frames) {
+		func();
+	};
+};
