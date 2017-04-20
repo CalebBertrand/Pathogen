@@ -5,6 +5,7 @@ function preload() {
 }
 var particles;
 function setup() {
-	createCanvas(window.innerWidth, window.innerHeight);
+	var ctx = createCanvas(window.innerWidth, window.innerHeight);
+	ctx.parent('canvas-container')
 	particles = createParticles();
 }

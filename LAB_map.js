@@ -14,7 +14,7 @@ LAB_map.prototype.draw = function() {
 	// Fill with gradient
 	drawingContext.fillStyle = grd;
 	drawingContext.fillRect(-this.radius/2,-this.radius/2,this.radius,this.radius);
-	//or just show an image instead!
+	//or just show an image instead! (Doesn't seem to help, sadly...)
 	//image(backgroundImg, -this.radius/2, -this.radius/2, this.radius, this.radius);
 };
 LAB_map.prototype.update = function() {
