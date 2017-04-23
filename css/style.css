@@ -3,21 +3,53 @@ canvas {
 	position:fixed; 
 	z-index: -1;
 }	
+.col {
+	position: relative;
+  	min-height: 1px;
+  	padding-top: 65px;
+  	padding-right: 10px;
+  	padding-left: 10px;
+  	float: left;
+  	width: 33.33%;
+}
 .info {
 	background-color: #3d3d3d;
 	color: #efefef;
 	border: solid #333333 3px;
-}
-.info-md {
-	width: 70%;
-	margin: 20px;
 	border-radius: 10px;
-	font-size: 0.9em;
+	width: 30%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding-left: 5px;
 }
-
-#username {
-	margin-top: 65px;
+.info-right {
+	margin-right: 25px;
+	float: right;
 }
-span >	 .lvl {
+.popup {
+	position: absolute;
+  	top: 50%;
+  	transform: translateY(-50%);
+	background-color: rgba(61, 61, 61, 0.5);
+	padding-top:20px;
+	padding-bottom: 20px;
+	padding-right: 10px;
+  	padding-left: 10px;
+}
+span > .lvl {
 	color:#2696ff;
+}
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #777;
+  border-radius: 10px;
 }

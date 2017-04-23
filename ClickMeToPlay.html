@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<title>PATHOGEN</title>
 
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
 	<script src="p5.js" type="text/javascript"></script>
 	<script src="setup.js" type="text/javascript"></script>
 	<script src="variables.js" type="text/javascript"></script>
@@ -16,7 +16,6 @@
 		<script src="Particles/chemical.js" type="text/javascript"></script>
 	<script src="draw.js" type="text/javascript"></script>
 
-	<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <style>
@@ -24,21 +23,29 @@
 </style>
 <body>
 	<div id="canvas-container"></div>
-	<div class="row">
-		<div class="col-lg-4 col-md-4 col-md-4 col-md-4">
-			<div class="container info info-md" id="username">
-				<h5><a href="#">TheSurvivor15</a>  <span class="badge"><span style="color:#1ddb00">XP </span>5</span></h5>
-				<p>Playing As <span>BACTERIUM</span></p>
-			</div>
+	<div class="col">
+		<div class="info" id="username">
+			<h5><a href="#">TheSurvivor15</a>  <span class="badge"><span style="color:#1ddb00">XP </span>5</span></h5>
+			<p>Playing As <span>BACTERIUM</span></p>
 		</div>
-		<div class="col-lg-4 col-md-4 col-md-4 col-md-4"></div>
-		<div class="col-lg-4 col-md-4 col-md-4 col-md-4">
-			<div class="container info info-md" id="username">
-				<h5>Plasma Membrane  <span class="badge"><span class="lvl">LVL </span>5</span></h5>
-				<h5>Cell Wall  <span class="badge"><span class="lvl">LVL </span>5</span></h5>
-				<h5>Ribosomes  <span class="badge"><span class="lvl">LVL </span>5</span></h5>
-				<h5>Flagellum <span class="badge"><span class="lvl">LVL </span>5</span></h5>
-			</div>
+	</div>
+	<div class="col">
+		<div class="popup">
+			<h3>Welcome To Pathogen</h3>
+		</div>
+	</div>
+	<div class="col">
+		<div class="info info-right" id="pm">
+			<h5>Plasma Membrane  <span class="badge"><span class="lvl">LVL </span>5</span></h5>
+		</div>
+		<div class="info info-right" id="cw">
+			<h5>Cell Wall  <span class="badge"><span class="lvl">LVL </span>5</span></h5>
+		</div>
+		<div class="info info-right" id="rb">
+			<h5>Ribosomes  <span class="badge"><span class="lvl">LVL </span>5</span></h5>
+		</div>
+		<div class="info info-right" id="fl">
+			<h5>Flagellum <span class="badge"><span class="lvl">LVL </span>5</span></h5>
 		</div>
 	</div>
 </body>
