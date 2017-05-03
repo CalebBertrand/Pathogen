@@ -33,10 +33,6 @@ player.prototype.control = function() {
 		this.accel.add(angle);
 };
 player.prototype.stats = function() {
-	if (this.glucose > 0) {
-		this.glucose-=0.01;
-		this.energy+=0.01;
-	}
 	push();
 	//transparent dark background
 	noStroke();
@@ -57,10 +53,23 @@ player.prototype.stats = function() {
 	rect(0, 30, this.hp*3, 10);
 	pop();
 };
+player.prototype.update = function() {
+	if (this.glucose > 0) {
+		this.glucose-=0.01;
+		this.energy+=0.01;
+	}
+	if (this.s < 50) {
+		this.energy-=0.001;
+		this.s+=0.001;
+	}else {
+		this.s = 25;
+		cells.push(new bacterium(this.pos.x, this.pos.y, 2.5, 40));
+	}
+};
 
 var cells = [];
 for (var i = 0; i < 3; i++) {
 	cells.push(new bacterium(random(-m.radius/1.5, m.radius/1.5), random(-m.radius/1.5, m.radius/1.5), 2.5, random(20, 60)));
 }
-var player = new player(0, 0, 2.5, 25, 0.7);
+var p1 = new player(0, 0, 2.5, 25, 0.7);
 cells.push(player);

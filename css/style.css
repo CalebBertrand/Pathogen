@@ -1,40 +1,35 @@
-body {margin: 0px; padding: 0px;}
+body {margin: 0px; padding: 0px; font-family: 'Lora', sans-serif;}
 canvas {
 	position:fixed; 
 	z-index: -1;
 }	
-.col {
-	position: relative;
-  	min-height: 1px;
-  	padding-top: 65px;
-  	padding-right: 10px;
-  	padding-left: 10px;
-  	float: left;
-  	width: 33.33%;
-}
+.container { padding-top: 50px;}
+.column-left{ float: left; width: 33%; padding-left: 40px;}
+.column-right{ float: right; width: 33%;}
+.column-center{ display: inline-block; width: 33%; }
 .info {
 	background-color: #3d3d3d;
 	color: #efefef;
 	border: solid #333333 3px;
 	border-radius: 10px;
-	width: 30%;
+	width: 70%;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	padding-left: 5px;
 }
 .info-right {
-	margin-right: 25px;
-	float: right;
+	position: relative;
+  left: 20%;
 }
 .popup {
 	position: absolute;
-  	top: 50%;
-  	transform: translateY(-50%);
+  top: 50%;
+  transform: translateY(-50%);
 	background-color: rgba(61, 61, 61, 0.5);
 	padding-top:20px;
 	padding-bottom: 20px;
 	padding-right: 10px;
-  	padding-left: 10px;
+  padding-left: 10px;
 }
 span > .lvl {
 	color:#2696ff;

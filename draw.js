@@ -1,12 +1,13 @@
 function draw() {
 	push();
-	translate(width/2-player.pos.x, height/2-player.pos.y);
+	translate(width/2-p1.pos.x, height/2-p1.pos.y);
 	m.run();
 	particles.iterateParticles();
 	cells.iterate();
+	p1.update();
 	pop();
-	player.stats();
+	p1.stats();
 };
 function mouseMoved() {
- 	player.control();
+ 	p1.control();
 };
