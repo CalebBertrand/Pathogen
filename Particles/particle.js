@@ -42,15 +42,15 @@ particle.prototype.checkForCollision = function(target) {
 	}
 };
 particle.prototype.run = function() {
-		var d = dist(this.pos.x, this.pos.y, player.pos.x, player.pos.y);
+		var d = dist(this.pos.x, this.pos.y, p1.pos.x, p1.pos.y);
 		if (d < width/1.5) {
-			if (d < player.pm/6 + player.s) {
-				if (this.checkForCollision(player)) {
+			if (d < p1.pm/6 + p1.s) {
+				if (this.checkForCollision(p1)) {
 					this.isDead = true;
 					this.affect();
 				}else{
 					this.physics();
-					this.attract(player, player.pm);
+					this.attract(p1, p1.pm);
 				}
 			}
 			this.draw();

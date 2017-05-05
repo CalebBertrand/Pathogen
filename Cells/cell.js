@@ -15,7 +15,7 @@ cell.prototype.physics = function() {
 };
 cell.prototype.run = function() {
 	this.physics();
-	var d = dist(this.pos.x, this.pos.y, player.pos.x, player.pos.y);
+	var d = dist(this.pos.x, this.pos.y, p1.pos.x, p1.pos.y);
 	if (d < width/1.6) {
 		this.draw();
 	}

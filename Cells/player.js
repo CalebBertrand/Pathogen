@@ -1,3 +1,4 @@
+//turnSmooth MUST BE DECIMAL EQUAL TO OR LESS THAN 1
 var player = function(X, Y, velL, S, turnSmooth) {
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
@@ -69,7 +70,7 @@ player.prototype.update = function() {
 
 var cells = [];
 for (var i = 0; i < 3; i++) {
-	cells.push(new bacterium(random(-m.radius/1.5, m.radius/1.5), random(-m.radius/1.5, m.radius/1.5), 2.5, random(20, 60)));
+	cells.push(new bacterium(calRandomPos('X', 60), calRandomPos('Y', 60), 2.5, random(20, 60)));
 }
 var p1 = new player(0, 0, 2.5, 25, 0.7);
-cells.push(player);
+cells.push(p1);
