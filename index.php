@@ -1,1 +1,1 @@
-<?php header( 'Location: /ClickMeToPlay.html' ) ;  ?>
+<?php header( 'Location: /index.html' ) ;  ?>

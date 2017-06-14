@@ -4,7 +4,7 @@ function draw() {
 	m.run();
 	particles.iterateParticles();
 	cells.iterate();
-	p1.update();
+	p1.mitosis();
 	pop();
 	p1.stats();
 };

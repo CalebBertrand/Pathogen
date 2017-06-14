@@ -54,7 +54,7 @@ player.prototype.stats = function() {
 	rect(0, 30, this.hp*3, 10);
 	pop();
 };
-player.prototype.update = function() {
+player.prototype.mitosis = function() {
 	if (this.glucose > 0) {
 		this.glucose-=0.01;
 		this.energy+=0.01;
@@ -67,10 +67,11 @@ player.prototype.update = function() {
 		cells.push(new bacterium(this.pos.x, this.pos.y, 2.5, 40));
 	}
 };
-
+function createCells() {
 var cells = [];
-for (var i = 0; i < 3; i++) {
-	cells.push(new bacterium(calRandomPos('X', 60), calRandomPos('Y', 60), 2.5, random(20, 60)));
+	for (var i = 0; i < 3; i++) {
+		cells.push(new bacterium(calRandomPos('X', 60), calRandomPos('Y', 60), 2.5, random(20, 60)));
+	}
+	cells.push(new sarcidine(0, 0, 2.5, 100));
+	return cells;
 }
-var p1 = new player(0, 0, 2.5, 25, 0.7);
-cells.push(p1);
