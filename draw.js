@@ -11,3 +11,12 @@ function draw() {
 function mouseMoved() {
  	p1.control();
 };
+function keyReleased() {
+	if (keyCode === 70) {
+		var fs = fullscreen();
+    	fullscreen(!fs);
+	}
+}
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+}
