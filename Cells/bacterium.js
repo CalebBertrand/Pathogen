@@ -1,3 +1,17 @@
+var flagellum = function(L, Color, Parent) {
+	this.leng = L;
+	this.points = [];
+	this.c = Color;
+	this.parent = Parent;
+	for (var i = 0; i < this.leng; i++) {
+		var x = cos((this.parent.vel.heading()-90) * random(-0.5 * i, 0.5 * i) * this.leng/i;
+		var y = sin((this.parent.vel.heading()-90) * random(-0.5 * i, 0.5 * i) * this.leng/i;
+		this.points.push(x, y);
+	}
+};
+flagellum.prototype.draw = function() {
+
+};
 var bacterium = function(X, Y, velL, S) {
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
@@ -14,6 +28,7 @@ bacterium.prototype.draw = function() {
 	var p = 0;
 	push();
 	translate(this.pos.x, this.pos.y);
+	rotate(this.vel.heading() - 90);
 	strokeWeight(this.s/19);
 	stroke(20, 210, 60, 170);
 	fill(248, 0, 0);

@@ -1,6 +1,5 @@
-var pseudopod = function(X, Y, W, H, Fill, Stroke) {
-	this.x = X;
-	this.y = Y;
+var pseudopod = function(YOff, W, H, Fill, Stroke, Parent) {
+	this.yOffset = YOff;
 	this.w = W;
 	this.h = H;
 	this.rotateVel = round(random(0, 1));
@@ -14,12 +13,13 @@ var pseudopod = function(X, Y, W, H, Fill, Stroke) {
 	this.r = random(0, this.destination*1.5);
 	this.fill = Fill;
 	this.stroke = Stroke;
+	this.parent = Parent;
 };
 pseudopod.prototype.update = function() {
 	push();
-	translate(0, 0);
-	rotate(this.r);
-	translate(this.x, this.y);
+	translate(this.parent.pos.x, this.parent.pos.y);
+	rotate(this.r + this.parent.vel.heading() - 90);
+	translate(0, this.yOffset);
 	fill(this.fill);
 	stroke(this.stroke);
 	strokeWeight(3.5);
@@ -50,14 +50,14 @@ pseudopod.prototype.update = function() {
 var sarcidine = function(X, Y, velL, S) {
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
-	this.accel = createVector();
+	this.accel = createVector(3, 0);
 	this.velLimit = velL;
 	this.size = S;
 	this.pseudopods = [];
 	this.fill = color(255, 233, 178);
 	this.stroke = color(247, 210, 116, 200);
 	for (var i = 0; i < 5; i++) {
-		this.pseudopods.push(new pseudopod(0, this.size*0.6, this.size, this.size*0.6, this.fill, this.stroke));
+		this.pseudopods.push(new pseudopod(this.size*0.6, this.size, this.size*0.6, this.fill, this.stroke, this));
 	}
 };
 sarcidine.prototype = Object.create(cell.prototype);
@@ -71,6 +71,7 @@ sarcidine.prototype.draw = function() {
 	stroke(this.stroke);
 	strokeWeight(3.5);
 	translate(this.pos.x, this.pos.y);
+	rotate(this.vel.heading() - 90);
 	var p = 0;
 	beginShape();
 	for (var angle = 0; angle < TWO_PI; angle+=TWO_PI/map(this.size, 0, maxWhiteBloodSize, 65, 100)){
