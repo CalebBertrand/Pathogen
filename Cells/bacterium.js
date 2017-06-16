@@ -1,28 +1,36 @@
-var flagellum = function(L, Color, Parent) {
+var flagellum = function(L, Parent) {
 	this.leng = L;
 	this.points = [];
-	this.c = Color;
+	this.c;
 	this.parent = Parent;
 	for (var i = 0; i < this.leng; i++) {
-		var x = cos((this.parent.vel.heading()-90) * random(-0.5 * i, 0.5 * i) * this.leng/i;
-		var y = sin((this.parent.vel.heading()-90) * random(-0.5 * i, 0.5 * i) * this.leng/i;
-		this.points.push(x, y);
+		var x = cos((this.parent.vel.heading()-90) * random(-0.5 * i, 0.5 * i)) * this.leng/(i+1);
+		var y = sin((this.parent.vel.heading()-90) * random(-0.5 * i, 0.5 * i)) * this.leng/(i+1);
+		this.points.push(createVector(x, y));
 	}
 };
 flagellum.prototype.draw = function() {
-
+	beginShape();
+	noFill();
+	strokeWeight(4);
+	stroke(0);
+	for (var i = 0; i < this.points.length; i++) {
+		curveVertex(this.points[i].x, this.points[i].y);
+	}
+	endShape();
 };
-var bacterium = function(X, Y, velL, S) {
+// "bacterium" could further be organized into bacteriumPlayer and bacteriumBot
+var bacterium = function(X, Y, S) {
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
 	this.accel = createVector();
-	this.velLimit = velL;
+	this.velLimit = 2.5;
 	this.s = S;
 	this.isDead = false;
 	this.hp = 100;
+	this.fl = new flagellum(50, this);
 };
 bacterium.prototype = Object.create(cell.prototype);
-
 bacterium.prototype.draw = function() {
 	//Blobbiness and plasma membrane
 	var p = 0;

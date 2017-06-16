@@ -1,4 +1,4 @@
-var pseudopod = function(YOff, W, H, Fill, Stroke, Parent) {
+var pseudopod = function(YOff, W, H, Parent) {
 	this.yOffset = YOff;
 	this.w = W;
 	this.h = H;
@@ -11,9 +11,10 @@ var pseudopod = function(YOff, W, H, Fill, Stroke, Parent) {
 		this.destination = -HALF_PI;
 	}
 	this.r = random(0, this.destination*1.5);
-	this.fill = Fill;
-	this.stroke = Stroke;
 	this.parent = Parent;
+	this.fill = this.parent.fill;
+	this.stroke = this.parent.stroke;
+
 };
 pseudopod.prototype.update = function() {
 	push();
@@ -47,22 +48,23 @@ pseudopod.prototype.update = function() {
 	pop();
 };
 
-var sarcidine = function(X, Y, velL, S) {
-	this.pos = createVector(X, Y);
-	this.vel = createVector();
-	this.accel = createVector(3, 0);
-	this.velLimit = velL;
-	this.size = S;
+var sarcidine = function(X, Y, S) {
+	/* attributes required for this object's prototypes: 
+
 	this.pseudopods = [];
 	this.fill = color(255, 233, 178);
 	this.stroke = color(247, 210, 116, 200);
 	for (var i = 0; i < 5; i++) {
-		this.pseudopods.push(new pseudopod(this.size*0.6, this.size, this.size*0.6, this.fill, this.stroke, this));
+		this.pseudopods.push(new pseudopod(this.size*0.6, this.size, this.size*0.6, this));
 	}
+	this.rotation = this.vel.heading();
+	this.rotateVel = 0;
+	this.rotateAccel = 0; */
 };
 sarcidine.prototype = Object.create(cell.prototype);
 sarcidine.prototype = Object.create(bacterium.prototype);
 sarcidine.prototype.draw = function() {
+	handleRotation(this);
 	for (var i = 0; i < floor(this.pseudopods.length/2); i++) {
 		this.pseudopods[i].update();
 	}
@@ -71,7 +73,7 @@ sarcidine.prototype.draw = function() {
 	stroke(this.stroke);
 	strokeWeight(3.5);
 	translate(this.pos.x, this.pos.y);
-	rotate(this.vel.heading() - 90);
+	rotate(this.rotation);
 	var p = 0;
 	beginShape();
 	for (var angle = 0; angle < TWO_PI; angle+=TWO_PI/map(this.size, 0, maxWhiteBloodSize, 65, 100)){

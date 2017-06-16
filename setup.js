@@ -4,14 +4,16 @@
 //   backgroundImg = loadImage("imgs/background.png");
 // }
 var particles;
-var cells;
+var pathogens;
 var p1;
+var leukocytes;
 function setup() {
 	var ctx = createCanvas(window.innerWidth, window.innerHeight);
 	// ctx.parent('canvas-container');
 	particles = createParticles();
-	p1 = new player(0, 0, 2.5, 25, 0.7);
-	cells = createCells();
-	cells.push(p1);
-	frameRate(45);
+	p1 = new player(0, 0, 25, 0.7);
+	pathogens = createPahtogens();
+	pathogens.push(p1);
+	leukocytes = createLeukocytes();
+	frameRate(40);
 }

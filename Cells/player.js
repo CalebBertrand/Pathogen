@@ -1,9 +1,9 @@
 //turnSmooth MUST BE DECIMAL EQUAL TO OR LESS THAN 1
-var player = function(X, Y, velL, S, turnSmooth) {
+var player = function(X, Y, S, turnSmooth) {
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
 	this.accel = createVector();
-	this.velLimit = velL;
+	this.velLimit = 2.5;
 	this.s = S;
 	this.isDead = false;
 	if (turnSmooth) {
@@ -67,11 +67,3 @@ player.prototype.mitosis = function() {
 		cells.push(new bacterium(this.pos.x, this.pos.y, 2.5, 40));
 	}
 };
-function createCells() {
-var cells = [];
-	for (var i = 0; i < 3; i++) {
-		cells.push(new bacterium(calRandomPos('X', 60), calRandomPos('Y', 60), 2.5, random(20, 60)));
-	}
-	cells.push(new sarcidine(0, 0, 2.5, 100));
-	return cells;
-}

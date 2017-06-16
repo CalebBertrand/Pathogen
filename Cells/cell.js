@@ -1,9 +1,10 @@
-var cell = function(X, Y, velL, S) {
+var cell = function(X, Y, S) {
+	/* attributes required for this object's prototypes: 
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
 	this.accel = createVector();
-	this.velLimit = velL;
-	this.s = S;
+	this.velLimit = 2.5;
+	this.s = S; */
 };
 cell.prototype.physics = function() {
 	this.vel.add(this.accel);
@@ -15,6 +16,9 @@ cell.prototype.physics = function() {
 };
 cell.prototype.run = function() {
 	this.physics();
+	if (this.update) {
+		this.update();
+	}
 	var d = dist(this.pos.x, this.pos.y, p1.pos.x, p1.pos.y);
 	if (d < width/1.6) {
 		this.draw();
