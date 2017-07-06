@@ -19,19 +19,3 @@ chemical.prototype.draw = function() {
 	}
 	endShape(CLOSE);
 };
-
-function createParticles() {
-	var p = [];
-	for (var i = 0; i < 12; i++) {
-		p.push(new particle(cos(random(0, TWO_PI))*random(0, m.radius), sin(random(0, TWO_PI))*random(0, m.radius), color(255, 234, 0), "glucose", function() {
-			p1.glucose++;
-		}));
-		p.push(new particle(cos(random(0, TWO_PI))*random(0, m.radius), sin(random(0, TWO_PI))*random(0, m.radius), color(36, 229, 68), "toxic", function() {
-			p1.hp-=2.5;
-		}));
-		p.push(new chemical(cos(random(0, TWO_PI))*random(0, m.radius), sin(random(0, TWO_PI))*random(0, m.radius), color(196, 93, 193), "chemical", function() {
-			p1.chem++;
-		}));
-	}
-	return p;
-};

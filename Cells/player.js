@@ -1,30 +1,27 @@
 //turnSmooth MUST BE DECIMAL EQUAL TO OR LESS THAN 1
 var player = function(X, Y, S, turnSmooth) {
+	//physics
 	this.pos = createVector(X, Y);
-	this.vel = createVector();
+	this.vel = createVector(0, 0);
 	this.accel = createVector();
 	this.velLimit = 2.5;
 	this.s = S;
-	this.isDead = false;
 	if (turnSmooth) {
 		this.turnSmoothing = turnSmooth;
 	}else {
 		this.turnSmoothing = 0.8;
 	}
+	this.rotation = calRotation(this);
 
+	//stats
 	this.hp = 100;
-	//plasma membrane
 	this.pm = 130;
-	//cell wall
 	this.cw = 10;
-	//ribosomes
-	this.ribo = 10;
-	//ammount of glucose
+	this.rb = 10;
 	this.glucose = 0;
-	//ammount of energy
 	this.energy = 0;
-	//ammount of chemicals
 	this.chem = 0;
+	this.isDead = false;
 };
 player.prototype = Object.create(cell.prototype);
 player.prototype = Object.create(bacterium.prototype);

@@ -13,6 +13,7 @@ cell.prototype.physics = function() {
 	this.pos.limit(m.radius-this.s);
 	this.vel.mult(0.99);
 	this.accel.set(0);
+	this.rotation = calRotation(this);
 };
 cell.prototype.run = function() {
 	this.physics();

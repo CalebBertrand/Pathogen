@@ -21,13 +21,19 @@ flagellum.prototype.draw = function() {
 };
 // "bacterium" could further be organized into bacteriumPlayer and bacteriumBot
 var bacterium = function(X, Y, S) {
+	//physics
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
 	this.accel = createVector();
 	this.velLimit = 2.5;
+	this.rotation = calRotation(this);
 	this.s = S;
+
+	//stats
 	this.isDead = false;
 	this.hp = 100;
+	
+	//upgradeable
 	this.fl = new flagellum(50, this);
 };
 bacterium.prototype = Object.create(cell.prototype);

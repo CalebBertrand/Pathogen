@@ -11,7 +11,6 @@ particle.prototype.physics = function() {
 	this.vel.add(this.accel);
 	this.vel.limit(2);
 	this.pos.add(this.vel);
-	this.pos.limit(m.radius);
 };
 //A simple drawing prototype that creates a circle of the wanted color. Only used if the specific particle has no other drawing methods
 particle.prototype.draw = function() {
@@ -44,6 +43,7 @@ particle.prototype.checkForCollision = function(target) {
 particle.prototype.run = function() {
 		var d = dist(this.pos.x, this.pos.y, p1.pos.x, p1.pos.y);
 		if (d < width/1.5) {
+			this.pos.limit(m.radius - 20);
 			if (d < p1.pm/6 + p1.s) {
 				if (this.checkForCollision(p1)) {
 					this.isDead = true;

@@ -7,7 +7,7 @@ function draw() {
 	leukocytes.iterate();
 	p1.mitosis();
 	pop();
-	p1.stats();
+	// p1.stats();
 };
 function mouseMoved() {
  	p1.control();

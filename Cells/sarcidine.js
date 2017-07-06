@@ -19,7 +19,7 @@ var pseudopod = function(YOff, W, H, Parent) {
 pseudopod.prototype.update = function() {
 	push();
 	translate(this.parent.pos.x, this.parent.pos.y);
-	rotate(this.r + this.parent.vel.heading() - 90);
+	rotate(this.r + this.parent.rotation);
 	translate(0, this.yOffset);
 	fill(this.fill);
 	stroke(this.stroke);
@@ -33,7 +33,9 @@ pseudopod.prototype.update = function() {
 	curveVertex(this.w/2,  0);
 	curveVertex(this.w*1.25, -h/4);
 	endShape();
-	this.r += this.rotateVel;
+	if (this.parent.vel.mag() > 0) {
+		this.r += this.rotateVel;
+	}
 	if (abs(this.r - this.destination*2) < PI/10) {
 		this.r = 0;
 		this.rotateVel = round(random(0, 1));
@@ -57,14 +59,13 @@ var sarcidine = function(X, Y, S) {
 	for (var i = 0; i < 5; i++) {
 		this.pseudopods.push(new pseudopod(this.size*0.6, this.size, this.size*0.6, this));
 	}
-	this.rotation = this.vel.heading();
-	this.rotateVel = 0;
-	this.rotateAccel = 0; */
+	this.rotation = calRotation(this);
+	 */
 };
 sarcidine.prototype = Object.create(cell.prototype);
 sarcidine.prototype = Object.create(bacterium.prototype);
 sarcidine.prototype.draw = function() {
-	handleRotation(this);
+	// handleRotation(this);
 	for (var i = 0; i < floor(this.pseudopods.length/2); i++) {
 		this.pseudopods[i].update();
 	}
