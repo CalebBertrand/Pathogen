@@ -1,9 +1,11 @@
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>PATHOGEN</title>
 
 	<script src="libs/jQuery.js" type="text/javascript" async></script>
+	<script src="libs/jquery-ui.min.js" type="text/javascript" async></script>
 	<script src="libs/p5.js" type="text/javascript"></script>
 
 	<script src="setup.js" type="text/javascript"></script>
@@ -24,8 +26,9 @@
 		
 	<script src="draw.js" type="text/javascript"></script>
 
-	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet"> 
-	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet"> 
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <style>
@@ -33,11 +36,32 @@
 </style>
 <body>
 	<div id="canvas-container"></div>
-	<header class="seventh-height user-display">
-		<h1 class="name">FiveSevendyRainbowXD</h1>
-		<h2 class="type">Bacterium</h2>
-		<h2 class="wave">Wave: <span class="info">1</span></h2>
-	</header>
+	<div class="container">
+		<div class="col full-height"></div>
+		<div class="col full-height" id="col-center">
+			<div class="user-info-center">
+				<h2>AwesomeNinjaWarrior</h2>
+			</div>
+		</div>
+		<div class="col full-height">
+			<div class="toggle-sidebar gear">
+				<img src="imgs/gear.png" width="45px" height="45px">
+			</div>
+			<div class="sidebar full-height">
+			<div class="toggle-sidebar red-X">&times;</div>
+				<h2 class="username">AwesomeNinjaWarrior <span class="xp">5 XP</span></h1> 
+				<h1 class="border-left-green">Upgrades</h1>
+				<div class="upgrades">
+					<section><h2>Plasma Membrane <span class="lvl">5</span></h2> <div class="upgrade-button">+</div></section>
+					<section><h2>Cell Wall <span class="lvl">3</span></h2> <div class="upgrade-button">+</div></section>
+					<section><h2>Ribosomes <span class="lvl">7</span></h2> <div class="upgrade-button">+</div></section>
+					<section><h2>Flagellum <span class="lvl">4</span></h2> <div class="upgrade-button">+</div></section>
+				</div>
+				<div class="inset-shadow"></div>
+			</div>
+		</div>
+	</div>
+	<img src="imgs/vignette.png" class="full-height overlay-image">
 	<script src="jQueryScript.js" type="text/javascript"></script>
 </body>
 </html>

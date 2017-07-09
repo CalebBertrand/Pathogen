@@ -30,27 +30,29 @@ player.prototype.control = function() {
 		angle.mult(0.5*this.turnSmoothing);
 		this.accel.add(angle);
 };
-player.prototype.stats = function() {
-	push();
-	//transparent dark background
-	noStroke();
-	fill(30, 30, 30, 135);
-	rect(0, 0, width, 50);
+// player.prototype.stats = function() {
+// 	push();
+// 	//transparent dark background
+// 	noStroke();
+// 	fill(30, 30, 30, 135);
+// 	rect(0, 0, width, 50);
 
-	//glucose bar
-	fill(255, 180, 0);
-	rect(0, 0, this.glucose*5, 10);
-	//chem bar
-	fill(196, 93, 193);
-	rect(0, 10, this.chem*5, 10);
-	//energy bar
-	fill(255, map(noise(perlin), 0, 1, 200, 225), 0);
-	rect(0, 20, this.energy*3, 10);
-	//health
-	fill(216, 21, 21);
-	rect(0, 30, this.hp*3, 10);
-	pop();
-};
+// 	//glucose bar
+// 	fill(255, 180, 0);
+// 	rect(0, 0, this.glucose*5, 10);
+// 	//chem bar
+// 	fill(196, 93, 193);
+// 	rect(0, 10, this.chem*5, 10);
+// 	//energy bar
+// 	fill(255, map(noise(perlin), 0, 1, 200, 225), 0);
+// 	rect(0, 20, this.energy*3, 10);
+// 	//health
+// 	fill(216, 21, 21);
+// 	rect(0, 30, this.hp*3, 10);
+// 	pop();
+
+	
+// };
 player.prototype.mitosis = function() {
 	if (this.glucose > 0) {
 		this.glucose-=0.01;

@@ -57,7 +57,7 @@ var sarcidine = function(X, Y, S) {
 	this.fill = color(255, 233, 178);
 	this.stroke = color(247, 210, 116, 200);
 	for (var i = 0; i < 5; i++) {
-		this.pseudopods.push(new pseudopod(this.size*0.6, this.size, this.size*0.6, this));
+		this.pseudopods.push(new pseudopod(this.s*0.6, this.s, this.s*0.6, this));
 	}
 	this.rotation = calRotation(this);
 	 */
@@ -77,8 +77,8 @@ sarcidine.prototype.draw = function() {
 	rotate(this.rotation);
 	var p = 0;
 	beginShape();
-	for (var angle = 0; angle < TWO_PI; angle+=TWO_PI/map(this.size, 0, maxWhiteBloodSize, 65, 100)){
-		var d = map(noise(p, frameCount/100), 0, 1, this.size*0.75, this.size);
+	for (var angle = 0; angle < TWO_PI; angle+=TWO_PI/map(this.s, 0, maxWhiteBloodSize, 65, 100)){
+		var d = map(noise(p, frameCount/100), 0, 1, this.s*0.75, this.s);
 		var x = cos(angle)*d;
 		var y = sin(angle)*d;
 		vertex(x, y);
