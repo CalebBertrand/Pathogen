@@ -1,4 +1,4 @@
-var leukocyte = function(X, Y, S, Func) {
+var leukocyte = function(X, Y, S, Func, Eats) {
 	//physics
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
@@ -24,6 +24,7 @@ var leukocyte = function(X, Y, S, Func) {
 	this.doOnFind = Func;
 	this.range = this.s + 150;
 	this.target = undefined;
+	this.eats = Eats;
 };
 leukocyte.prototype = Object.create(sarcidine.prototype);
 leukocyte.prototype.update = function() {

@@ -7,6 +7,10 @@ function draw() {
 	leukocytes.iterate();
 	p1.mitosis();
 	pop();
+	if (statsIsActive) {
+		drawStats();
+	}
+	p1.checkForDead();
 };
 function mouseMoved() {
 	if (!sideBarIsActive) {
@@ -19,10 +23,13 @@ function keyReleased() {
     	fullscreen(!fs);
 	}else
 	if (keyCode === 49) {
-		saveCanvas('pathogenscreenshot','png')
+		saveCanvas('pathogenscreenshot','png');
 	}else
 	if (keyCode === 16) {
 		toggleSideBar();
+	}else
+	if (keyCode === 67) {
+		toggleStats();
 	}
 }
 function windowResized() {

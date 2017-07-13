@@ -9,7 +9,7 @@ function createLeukocytes() {
 	var leukocytes = [];
 	leukocytes.push(new leukocyte(0, 0, 100, function() {
 		this.pursue();
-	}));
+	}, true));
 	return leukocytes;
 }
 var leukocytesHunt = setInterval(function() {
@@ -58,3 +58,45 @@ function calRandomPos(offset) {
 function calRotation(obj) {
 	return obj.vel.heading() - HALF_PI;
 }
+
+function toggleStats() {
+	$('.shadow-right').toggle();
+	if (statsIsActive) {
+		statsTargetPos[0, 0, 0];
+	}else{
+		statsTargetPos[p1.hp, p1.energy, p1.chem];
+	}
+	for (statsActualPos[i] === statsTargetPos[i]) {
+		
+	}
+}
+
+function drawStats() {
+	for (var i = 0; i < statsActualPos.length; i++) {
+		if (statsActualPos[i] < statsTargetPos[i]) {
+			statsActualPos[i]+=3;
+		}else if (statsActualPos[i] > statsTargetPos[i]) {
+			statsActualPos[i]-=3;
+		}
+	}
+
+	strokeCap(SQUARE);
+	noFill();
+	strokeWeight(5);
+	stroke(255, 79, 79);
+	arc(width/2, height/2, 150, 150, PI*1.5, PI*1.5 + map(statsActualPos[0], 0, 100, 0, HALF_PI));
+	stroke(255, 234, 0);
+	arc(width/2, height/2, 150 - 8, 150 - 8, PI*1.5, PI*1.5 + map(statsActualPos[1], 0, 100, 0, HALF_PI));
+	stroke(196, 93, 193);
+	arc(width/2, height/2, 150 - 16, 150 - 16, PI*1.5, PI*1.5 + map(statsActualPos[2], 0, 100, 0, HALF_PI));
+}
+
+
+
+
+
+
+
+
+
+

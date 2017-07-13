@@ -1,4 +1,5 @@
-$(".sidebar").toggle();
+$(".sidebar").hide();
+$('.shadow-right').hide();
 
 function seventhHeight() {
 	var windowHeight = $(window).innerHeight();
@@ -26,7 +27,7 @@ function fullHeight() {
 	});
 }
 function toggleSideBar() {
-	if (sideBarIsActive) {sideBarIsActive = false;} else {sideBarIsActive = true;}
+	if (sideBarIsActive) {sideBarIsActive = false; $('.shadow-right').hide(); statsIsActive = false;} else {sideBarIsActive = true; $('.shadow-right').show(); statsIsActive = true;}
   	$(".sidebar").toggle("slide", { direction: "right" }, 250);
 }
 

@@ -10,6 +10,7 @@
 // 	vignette = loadImage("imgs/vignette.png");
 // }
 var sideBarIsActive = false;
+var statsIsActive = false;
 var particles;
 var pathogens;
 var p1;

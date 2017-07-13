@@ -19,8 +19,8 @@ var player = function(X, Y, S, turnSmooth) {
 	this.cw = 10;
 	this.rb = 10;
 	this.glucose = 0;
-	this.energy = 0;
-	this.chem = 0;
+	this.energy = 50;
+	this.chem = 15;
 	this.isDead = false;
 };
 player.prototype = Object.create(cell.prototype);
@@ -63,6 +63,12 @@ player.prototype.mitosis = function() {
 		this.s+=0.001;
 	}else {
 		this.s = 25;
-		cells.push(new bacterium(this.pos.x, this.pos.y, 2.5, 40));
+		pathogens.push(new bacterium(this.pos.x, this.pos.y, 25, 40));
+	}
+};
+player.prototype.checkForDead = function() {
+	if (this.hp <= 0) {
+		this.hp = 100;
+		this.pos.set(0, 0);
 	}
 };
