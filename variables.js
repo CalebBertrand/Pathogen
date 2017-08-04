@@ -8,4 +8,7 @@ var mutationMessages = {
 	PM:"Your plasma membrane has mutated! Attracting partices may be more difficult."
 };
 var statsActualPos = [0, 0, 0];
-var statsTargetPos = [0, 0, 0];
+var sideBarIsActive = false;
+var statsIsActive = false;
+var updateStats = false;
+var playerStats;

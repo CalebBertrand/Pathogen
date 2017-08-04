@@ -7,9 +7,14 @@ function createPahtogens() {
 }
 function createLeukocytes() {
 	var leukocytes = [];
-	leukocytes.push(new leukocyte(0, 0, 100, function() {
-		this.pursue();
-	}, true));
+	// leukocytes.push(new leukocyte(0, 0, 100, function() {
+	// 	this.pursue();
+	// }, true));
+	leukocytes.push(new leukocyte(0, 0, 45, function() {
+		this.alarm();
+	}, true, function() {
+		this.alarmSeek();
+	}));
 	return leukocytes;
 }
 var leukocytesHunt = setInterval(function() {
@@ -60,37 +65,103 @@ function calRotation(obj) {
 }
 
 function toggleStats() {
-	$('.shadow-right').toggle();
+	// var playerStats = [p1.hp, p1.energy, p1.chem];
 	if (statsIsActive) {
-		statsTargetPos[0, 0, 0];
+		updateStats = false;
+		$('.shadow-right').stop().animate({
+   			opacity: 0,
+   			height: 0,
+ 		},
+		{
+			duration: 175,
+   			progress: function(a, p, c ) {
+      			for (var i = 0; i < statsActualPos.length; i++) {
+                    statsActualPos[i] = playerStats[i] * (1 - p);
+                }        
+   			},
+   			complete: function() {
+   				statsIsActive = false;
+   			}
+ 		});
 	}else{
-		statsTargetPos[p1.hp, p1.energy, p1.chem];
+		statsIsActive = true;
+		$('.shadow-right').stop().animate({
+   			opacity: 1,
+   			height: 40,
+ 		},
+		{
+			duration: 175,
+   			progress: function(a, p, c ) {
+      			for (var i = 0; i < statsActualPos.length; i++) {
+                            	statsActualPos[i] = playerStats[i] * p;
+                            }
+   			},
+   			complete: function() {
+   				updateStats = true;
+   			}
+ 		});
 	}
-	for (statsActualPos[i] === statsTargetPos[i]) {
-		
+}
+function statsOff() {
+	if (statsIsActive) {
+		// var playerStats = [p1.hp, p1.energy, p1.chem];
+		updateStats = false;
+		$('.shadow-right').stop().animate({
+   				opacity: 0,
+   				height: 0,
+ 			},
+			{
+			duration: 175,
+   			progress: function(a, p, c ) {
+   				for (var i = 0; i < statsActualPos.length; i++) {
+    	            statsActualPos[i] = playerStats[i] * (1 - p);
+    	       }        
+   			},
+   			complete: function() {
+   				statsIsActive = false;
+   			}
+ 		});
+	}
+}
+function statsOn() {
+	if (!statsIsActive) {
+		statsIsActive = true;
+		$('.shadow-right').stop().animate({
+   			opacity: 1,
+   			height: 40,
+ 		},
+		{
+			duration: 175,
+   			progress: function(a, p, c ) {
+      			for (var i = 0; i < statsActualPos.length; i++) {
+                            	statsActualPos[i] = playerStats[i] * p;
+                            }
+   			},
+   			complete: function() {
+   				updateStats = true;
+   			}
+ 		});
 	}
 }
 
-function drawStats() {
-	for (var i = 0; i < statsActualPos.length; i++) {
-		if (statsActualPos[i] < statsTargetPos[i]) {
-			statsActualPos[i]+=3;
-		}else if (statsActualPos[i] > statsTargetPos[i]) {
-			statsActualPos[i]-=3;
-		}
-	}
 
+
+function drawStats() {
 	strokeCap(SQUARE);
 	noFill();
 	strokeWeight(5);
 	stroke(255, 79, 79);
 	arc(width/2, height/2, 150, 150, PI*1.5, PI*1.5 + map(statsActualPos[0], 0, 100, 0, HALF_PI));
 	stroke(255, 234, 0);
-	arc(width/2, height/2, 150 - 8, 150 - 8, PI*1.5, PI*1.5 + map(statsActualPos[1], 0, 100, 0, HALF_PI));
+	arc(width/2, height/2, 150 - 9, 150 - 8, PI*1.5, PI*1.5 + map(statsActualPos[1], 0, 100, 0, HALF_PI));
 	stroke(196, 93, 193);
-	arc(width/2, height/2, 150 - 16, 150 - 16, PI*1.5, PI*1.5 + map(statsActualPos[2], 0, 100, 0, HALF_PI));
+	arc(width/2, height/2, 150 - 18, 150 - 16, PI*1.5, PI*1.5 + map(statsActualPos[2], 0, 100, 0, HALF_PI));
 }
-
+function statsUpdate() {
+					for (var i = 0; i < statsActualPos.length; i++) {
+						statsActualPos[i] = playerStats[i];
+					}
+}
 
 
 

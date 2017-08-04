@@ -10,6 +10,9 @@ function draw() {
 	if (statsIsActive) {
 		drawStats();
 	}
+	if (updateStats) {
+		statsUpdate();
+	}
 	p1.checkForDead();
 };
 function mouseMoved() {

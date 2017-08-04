@@ -19,6 +19,7 @@ LAB_map.prototype.draw = function() {
 };
 LAB_map.prototype.update = function() {
 	perlin+=0.01;
+	playerStats = [p1.hp, p1.energy, p1.chem];
 };
 LAB_map.prototype.run = function() {
 	this.update();

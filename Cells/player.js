@@ -27,7 +27,7 @@ player.prototype = Object.create(cell.prototype);
 player.prototype = Object.create(bacterium.prototype);
 player.prototype.control = function() {
 		var angle = createVector(mouseX-width/2, mouseY-height/2);
-		angle.mult(0.5*this.turnSmoothing);
+		angle.mult(this.turnSmoothing);
 		this.accel.add(angle);
 };
 // player.prototype.stats = function() {
