@@ -21,5 +21,4 @@ function setup() {
 	pathogens = createPahtogens();
 	pathogens.push(p1);
 	leukocytes = createLeukocytes();
-	frameRate(40);
 }

@@ -12,10 +12,22 @@ body {margin: 0px; padding: 0px; font-family: 'Montserrat', sans-serif; color: r
 canvas {position:fixed; z-index: -1;}	
 .container { width: 100%; }
 .col { width: 33.33%; float: left; }
+.wave-left {
+  position: absolute;
+  left: 45px;
+  top: 50px;
+}
 #col-center { 
   display: flex;
   align-items: center;
   justify-content: center; 
+}
+.wave-center {
+  position: absolute;
+  top: 50px;
+  margin: auto;
+  color: white;
+  letter-spacing: 3px;
 }
 .user-info-center {
   font-size: 10px;
@@ -29,12 +41,32 @@ canvas {position:fixed; z-index: -1;}
   left: -50%;
 }
 
-
+.homeostasis-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: solid #8c8c8c 3px;
+  border-radius: 10px;
+  background-color: #262626;
+  width: 25%;
+  height: 40px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 2;
+}
+.homeostasis-bar p {
+  font-size: 16px;
+  color: limegreen;
+  width: 100%;
+  padding-left: 10px;
+  font-family: 'Kanit', 'sans-serif';
+  margin: 5px;
+}
 
 .gear {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 50px;
+  right: 25px;
   background-color: #5e5e5e;
   width: 50px;
   height: 50px;
@@ -171,6 +203,7 @@ canvas {position:fixed; z-index: -1;}
 }
 
 .overlay-image {
+  pointer-events: none;
   width: 100%;
   position: absolute;
   top: 0;
@@ -189,26 +222,4 @@ canvas {position:fixed; z-index: -1;}
   .sidebar {
     width: 70%;
   }
-}
-
-span.lvl {
-  padding-left: 5px;
-  padding-top: 2px;
-	color: #00ea32;
-  font-size: 16px;/*
-  font-family: 'Press Start 2P', sans-serif;*/
-}
-.badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #777;
-  border-radius: 10px;
 }

@@ -1,4 +1,4 @@
-var leukocyte = function(X, Y, S, Func, Eats, DoAlways) {
+var leukocyte = function(X, Y, S, Func, Eats, DoAlways, Counter) {
 	//physics
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
@@ -12,9 +12,7 @@ var leukocyte = function(X, Y, S, Func, Eats, DoAlways) {
 	this.fill = color(255, 233, 178);
 	this.stroke = color(247, 210, 116, 200);
 	this.pseudopods = [];
-	for (var i = 0; i < 5; i++) {
-		this.pseudopods.push(new pseudopod(this.s*0.6, this.s, this.s*0.6, this));
-	}
+	for (var i = 0; i < 5; i++) { this.pseudopods.push(new pseudopod(this.s*0.6, this.s, this.s*0.6, this)); }
 
 	//stats
 	this.hp = 100;
@@ -26,6 +24,8 @@ var leukocyte = function(X, Y, S, Func, Eats, DoAlways) {
 	this.target = undefined;
 	this.eats = Eats;
 	this.doAlways = DoAlways;
+	//The counter property is used for when there needs to be something unique for each white blood cell that is counted up continuously. See leucocyte.basophilSeek
+	this.counter = Counter;
 };
 leukocyte.prototype = Object.create(sarcidine.prototype);
 leukocyte.prototype.update = function() {
@@ -68,16 +68,14 @@ leukocyte.prototype.pursue = function() {
 leukocyte.prototype.alarm = function() {
 
 };
-leukocyte.prototype.alarmSeek = function(timestamp) {
-	if (frameCount % 250 > 200) {
-		var alpha = 1/(frameCount % 250 -200)
+leukocyte.prototype.basophilSeek = function(timestamp) {
+	this.counter++;
+	if (this.counter % 250 > 200) {
+		var alpha = 1/(this.counter % 250 -200)
 		push();
 		translate(this.pos.x, this.pos.y);
 		rotate(frameCount / 100);
-		// // noFill();
-		// // stroke(0, 255, 42);
-		// // strokeWeight(2.5);
-		// // ellipse(this.pos.x, this.pos.y, this.range, this.range);
+
 		fill(89, 255, 0, map(alpha, 0, 1, 0, 255));
 		noStroke();	
 		rect(0, -2.5, 100, 5);
@@ -90,17 +88,7 @@ leukocyte.prototype.alarmSeek = function(timestamp) {
 		drawingContext.arc(0, 0, 100, 0, 2 * Math.PI);
 		// Fill with gradient
 		drawingContext.fillStyle = grd;
-		// drawingContext.fillRect(this.pos.x-this.range/2,this.pos.y-this.range/2,this.range,this.range);
 		drawingContext.fill();
-		// 
-		// // noStroke();
-		// stroke(255, 255, 255);
-		// strokeWeight(1.5);
-		// for (var i = 0; i < 3; i++) {
-		// 	fill(0, 244, 236, map(i, 0, 2, 255, 125));
-		// 	ellipse(cos(frameCount/15 -i/3.5)*this.range, sin(frameCount/15 -i/3.5)*this.range, 10-i, 10-i);
-		// }
 		pop();
-		console.log("yo");
 	}
 };

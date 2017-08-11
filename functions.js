@@ -1,3 +1,4 @@
+//runs in setup
 function createPahtogens() {
 	var pathogens = [];
 	// for (var i = 0; i < 3; i++) {
@@ -5,40 +6,24 @@ function createPahtogens() {
 	// }
 	return pathogens;
 }
+//runs in setup
 function createLeukocytes() {
 	var leukocytes = [];
-	// leukocytes.push(new leukocyte(0, 0, 100, function() {
-	// 	this.pursue();
-	// }, true));
-	leukocytes.push(new leukocyte(0, 0, 45, function() {
-		this.alarm();
-	}, true, function() {
-		this.alarmSeek();
-	}));
+	for (var i = 0; i < 3; i++) {
+		leukocytes.push(new leukocyte(0, 0, 100, function() {
+			this.pursue();
+		}, true));
+	}
+	for (var i = 0; i < 5; i++) {
+		leukocytes.push(new leukocyte(0, 0, 45, function() {
+			this.alarm();
+		}, true, function() {
+			this.basophilSeek();
+		}, random(0, 1000)));
+	}	
 	return leukocytes;
 }
-var leukocytesHunt = setInterval(function() {
-		for (var i = 0; i < leukocytes.length; i++) {
-			for (var j = 0; j < pathogens.length; j++) {
-				var d = p5.Vector.sub(leukocytes[i].pos, pathogens[j].pos);
-				
-				if (d.mag() < leukocytes[i].range) {
-					leukocytes[i].target = pathogens[j];
-					leukocytes[i].foundTarget = true;
-					break;
-				}
-			
-			}
-		}
-	}, 5000);
-var leukocyteWander = setInterval(function() {
-		for (var i = 0; i < leukocytes.length; i++) {
-			if (!leukocytes[i].foundTarget) {
-					leukocytes[i].accel.rotate(random(-5, 5));
-					leukocytes[i].accel.set(random(2, 5));
-			}
-		}
-	}, 10000);
+//runs in setup
 function createParticles() {
 	var p = [];
 	for (var i = 0; i < 12; i++) {
@@ -54,16 +39,18 @@ function createParticles() {
 	}
 	return p;
 };
+//returns a random position inside the map. Optionally takes a padding between the position and the edge of the map. 
 function calRandomPos(offset) {
 	var pos = p5.Vector.random2D();
 	pos.mult(random(0, m.radius));
 	pos.limit(m.radius-offset);
 	return pos;
 }
+//calculate heading according to object's velocity
 function calRotation(obj) {
 	return obj.vel.heading() - HALF_PI;
 }
-
+//stat functions relate to the stat arcs shown in the center of the screen
 function toggleStats() {
 	// var playerStats = [p1.hp, p1.energy, p1.chem];
 	if (statsIsActive) {
@@ -100,8 +87,7 @@ function toggleStats() {
    				updateStats = true;
    			}
  		});
-	}
-}
+	}}
 function statsOff() {
 	if (statsIsActive) {
 		// var playerStats = [p1.hp, p1.energy, p1.chem];
@@ -121,8 +107,7 @@ function statsOff() {
    				statsIsActive = false;
    			}
  		});
-	}
-}
+	}}
 function statsOn() {
 	if (!statsIsActive) {
 		statsIsActive = true;
@@ -141,11 +126,7 @@ function statsOn() {
    				updateStats = true;
    			}
  		});
-	}
-}
-
-
-
+	}}
 function drawStats() {
 	strokeCap(SQUARE);
 	noFill();
@@ -155,19 +136,39 @@ function drawStats() {
 	stroke(255, 234, 0);
 	arc(width/2, height/2, 150 - 9, 150 - 8, PI*1.5, PI*1.5 + map(statsActualPos[1], 0, 100, 0, HALF_PI));
 	stroke(196, 93, 193);
-	arc(width/2, height/2, 150 - 18, 150 - 16, PI*1.5, PI*1.5 + map(statsActualPos[2], 0, 100, 0, HALF_PI));
-}
+	arc(width/2, height/2, 150 - 18, 150 - 16, PI*1.5, PI*1.5 + map(statsActualPos[2], 0, 100, 0, HALF_PI));}
 function statsUpdate() {
 					for (var i = 0; i < statsActualPos.length; i++) {
 						statsActualPos[i] = playerStats[i];
-					}
-}
+					}}
 
+//runs each 45 seconds and changes the wave
+var nextWave = setInterval(function() {
+	wave++;
+	toggleWaveText();
+	setTimeout(toggleWaveText(), 10000);
+}, 45000);
 
-
-
-
-
-
-
-
+//functions for WBC's to wander, and also check to find pathogens near them
+var leukocytesHunt = setInterval(function() {
+		for (var i = 0; i < leukocytes.length; i++) {
+			for (var j = 0; j < pathogens.length; j++) {
+				var d = p5.Vector.sub(leukocytes[i].pos, pathogens[j].pos);
+				
+				if (d.mag() < leukocytes[i].range) {
+					leukocytes[i].target = pathogens[j];
+					leukocytes[i].foundTarget = true;
+					break;
+				}
+			
+			}
+		}
+	}, 5000);
+var leukocyteWander = setInterval(function() {
+		for (var i = 0; i < leukocytes.length; i++) {
+			if (!leukocytes[i].foundTarget) {
+					leukocytes[i].accel.rotate(random(-5, 5));
+					leukocytes[i].accel.setMag(random(2, 5));
+			}
+		}
+	}, 10000);

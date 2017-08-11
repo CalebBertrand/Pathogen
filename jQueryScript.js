@@ -1,5 +1,11 @@
 $(".sidebar").hide();
 $('.shadow-right').css({'height': '0', 'opacity': '0'});
+$('.wave-center').toggle();
+
+function toggleWaveText() {
+	$('.wave-number').html(wave);
+	$('.wave-center').fadeToggle();
+}
 
 function seventhHeight() {
 	var windowHeight = $(window).innerHeight();
@@ -24,6 +30,7 @@ $( ".toggle-sidebar" ).click(function() {
 
 seventhHeight();
 fullHeight();
+
 
 $(window).resize(function() {
 	seventhHeight();

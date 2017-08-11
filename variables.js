@@ -12,3 +12,4 @@ var sideBarIsActive = false;
 var statsIsActive = false;
 var updateStats = false;
 var playerStats;
+var wave = 1;
