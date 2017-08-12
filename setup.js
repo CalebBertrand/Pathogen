@@ -9,6 +9,7 @@
 //   pressStart = loadFont('fonts/PressStart2P-Regular.ttf');
 // 	vignette = loadImage("imgs/vignette.png");
 // }
+
 var particles;
 var pathogens;
 var p1;
@@ -21,4 +22,5 @@ function setup() {
 	pathogens = createPahtogens();
 	pathogens.push(p1);
 	leukocytes = createLeukocytes();
+	background(200, 10, 10);
 }

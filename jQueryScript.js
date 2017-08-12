@@ -31,7 +31,6 @@ $( ".toggle-sidebar" ).click(function() {
 seventhHeight();
 fullHeight();
 
-
 $(window).resize(function() {
 	seventhHeight();
 	fullHeight();

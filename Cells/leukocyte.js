@@ -69,26 +69,14 @@ leukocyte.prototype.alarm = function() {
 
 };
 leukocyte.prototype.basophilSeek = function(timestamp) {
-	this.counter++;
-	if (this.counter % 250 > 200) {
-		var alpha = 1/(this.counter % 250 -200)
+	var counter = (frameCount + this.counter) % 250;
+	if (counter > 205) {
+		var alpha = map(counter, 205, 250, 1, 0);
 		push();
 		translate(this.pos.x, this.pos.y);
 		rotate(frameCount / 100);
-
-		fill(89, 255, 0, map(alpha, 0, 1, 0, 255));
-		noStroke();	
-		rect(0, -2.5, 100, 5);
-
-		var grd = drawingContext.createRadialGradient(0, 0, 5, 0, 0, 100);
-		grd.addColorStop(0.85, "rgba(89, 255, 0, 0)");
-		grd.addColorStop(1, "rgba(89, 255, 0, " + alpha + ")");
-		//draw circle
-		drawingContext.beginPath();
-		drawingContext.arc(0, 0, 100, 0, 2 * Math.PI);
-		// Fill with gradient
-		drawingContext.fillStyle = grd;
-		drawingContext.fill();
+		drawingContext.globalAlpha = alpha;
+		image(radar, -100, -100, 200, 200);
 		pop();
 	}
 };

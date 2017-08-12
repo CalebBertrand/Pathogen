@@ -9,12 +9,13 @@ function createPahtogens() {
 //runs in setup
 function createLeukocytes() {
 	var leukocytes = [];
-	for (var i = 0; i < 3; i++) {
+	for (var i = 0; i < 0; i++) {
 		leukocytes.push(new leukocyte(0, 0, 100, function() {
 			this.pursue();
 		}, true));
 	}
-	for (var i = 0; i < 5; i++) {
+	// 10 is a good max for the basophils
+	for (var i = 0; i < 0; i++) {
 		leukocytes.push(new leukocyte(0, 0, 45, function() {
 			this.alarm();
 		}, true, function() {
@@ -146,7 +147,7 @@ function statsUpdate() {
 var nextWave = setInterval(function() {
 	wave++;
 	toggleWaveText();
-	setTimeout(toggleWaveText(), 10000);
+	setTimeout(function() {toggleWaveText();}, 4000);
 }, 45000);
 
 //functions for WBC's to wander, and also check to find pathogens near them

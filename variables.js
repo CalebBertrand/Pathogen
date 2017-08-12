@@ -13,3 +13,5 @@ var statsIsActive = false;
 var updateStats = false;
 var playerStats;
 var wave = 1;
+
+var mapSize = 600;
