@@ -18,7 +18,7 @@ function setup() {
 	var ctx = createCanvas(window.innerWidth, window.innerHeight);
 	ctx.parent('canvas-container');
 	particles = createParticles();
-	p1 = new player(calRandomPos(25).x, calRandomPos(25).y, 30, 1);
+	p1 = new player(calRandomPos(25).x, calRandomPos(25).y, 30, 0.8, 'AwesomeninjaWarrior');
 	pathogens = createPahtogens();
 	pathogens.push(p1);
 	leukocytes = createLeukocytes();

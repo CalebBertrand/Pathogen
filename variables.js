@@ -12,6 +12,22 @@ var sideBarIsActive = false;
 var statsIsActive = false;
 var updateStats = false;
 var playerStats;
-var wave = 1;
 
-var mapSize = 600;
+var mapSize = 750;
+
+var wave = 1;
+//LEGEND 
+		// B = Basophils
+		// N = Neurophils
+		// L = Lymphocytes
+var waves = [{}, 
+			 {B: 3}, 
+			 {N: 1},
+			 {N: 3},
+			 {N: 3, L: 1}, 
+			 {},
+			 {}, 
+			 {},
+			 {}, 
+			 {}
+			];

@@ -31,6 +31,10 @@ $( ".toggle-sidebar" ).click(function() {
 seventhHeight();
 fullHeight();
 
+$(document).ready(function() {
+	$('.username').html(p1.username);
+});
+
 $(window).resize(function() {
 	seventhHeight();
 	fullHeight();

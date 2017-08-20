@@ -9,16 +9,19 @@ function createPahtogens() {
 //runs in setup
 function createLeukocytes() {
 	var leukocytes = [];
+	//neurophils
 	for (var i = 0; i < 0; i++) {
 		leukocytes.push(new leukocyte(0, 0, 100, function() {
 			this.pursue();
-		}, true));
+		}, true, function() {
+			this.neurophilSeek();
+		}));
 	}
 	// 10 is a good max for the basophils
-	for (var i = 0; i < 0; i++) {
+	for (var i = 0; i < 1; i++) {
 		leukocytes.push(new leukocyte(0, 0, 45, function() {
 			this.alarm();
-		}, true, function() {
+		}, false, function() {
 			this.basophilSeek();
 		}, random(0, 1000)));
 	}	
@@ -143,33 +146,55 @@ function statsUpdate() {
 						statsActualPos[i] = playerStats[i];
 					}}
 
-//runs each 45 seconds and changes the wave
-var nextWave = setInterval(function() {
+function nextWave() {
 	wave++;
 	toggleWaveText();
 	setTimeout(function() {toggleWaveText();}, 4000);
-}, 45000);
+}
+//runs each 45 seconds and changes the wave
+var autoNextWave = setInterval(function() {nextWave();}, 95000);
 
 //functions for WBC's to wander, and also check to find pathogens near them
-var leukocytesHunt = setInterval(function() {
+var neurophilsHunt = setInterval(function() {
 		for (var i = 0; i < leukocytes.length; i++) {
-			for (var j = 0; j < pathogens.length; j++) {
-				var d = p5.Vector.sub(leukocytes[i].pos, pathogens[j].pos);
-				
-				if (d.mag() < leukocytes[i].range) {
-					leukocytes[i].target = pathogens[j];
-					leukocytes[i].foundTarget = true;
-					break;
+			if (this.eats) {
+				for (var j = 0; j < pathogens.length; j++) {
+					var d = p5.Vector.sub(leukocytes[i].pos, pathogens[j].pos);
+					if (d.mag() < leukocytes[i].range) {
+						leukocytes[i].target = pathogens[j];
+						leukocytes[i].foundTarget = true;
+						break;
+					}
 				}
-			
 			}
 		}
 	}, 5000);
 var leukocyteWander = setInterval(function() {
 		for (var i = 0; i < leukocytes.length; i++) {
 			if (!leukocytes[i].foundTarget) {
-					leukocytes[i].accel.rotate(random(-5, 5));
-					leukocytes[i].accel.setMag(random(2, 5));
+					leukocytes[i].accel.mult(0.85);
+					leukocytes[i].accel.add(p5.Vector.random2D());
 			}
 		}
-	}, 10000);
+	}, 5000);
+
+
+function spawn(type, count) {
+	var wbctype;
+	if (type == 'B') {
+		wbctype = new leukocyte(0, 0, 45, function() {
+			this.alarm();
+		}, true, function() {
+			this.basophilSeek();
+		}, random(0, 1000));
+	}else if (type == 'N') {
+		wbctype = new leukocyte(0, 0, 100, function() {
+			this.pursue();
+		}, true);
+	}else if (type == 'L') {
+
+	}
+	for (var i = 0; i < count; i++) {
+		leukocytes.push(wbctype);
+	}
+}

@@ -5,7 +5,6 @@ function draw() {
 	particles.iterateParticles();
 	pathogens.iterate();
 	leukocytes.iterate();
-	p1.mitosis();
 	pop();
 	if (statsIsActive) {
 		drawStats();

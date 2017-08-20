@@ -1,5 +1,6 @@
 //turnSmooth MUST BE DECIMAL EQUAL TO OR LESS THAN 1
-var player = function(X, Y, S, turnSmooth) {
+var player = function(X, Y, S, turnSmooth, UserName) {
+	this.username = UserName;
 	//physics
 	this.pos = createVector(X, Y);
 	this.vel = createVector(0, 0);
@@ -26,6 +27,7 @@ var player = function(X, Y, S, turnSmooth) {
 player.prototype = Object.create(cell.prototype);
 player.prototype = Object.create(bacterium.prototype);
 player.prototype.control = function() {
+		this.accel.mult(0.2);
 		var angle = createVector(mouseX-width/2, mouseY-height/2);
 		angle.mult(this.turnSmoothing);
 		this.accel.add(angle);
@@ -53,19 +55,19 @@ player.prototype.control = function() {
 
 	
 // };
-player.prototype.mitosis = function() {
-	if (this.glucose > 0) {
-		this.glucose-=0.01;
-		this.energy+=0.01;
-	}
-	if (this.s < 50) {
-		this.energy-=0.001;
-		this.s+=0.001;
-	}else {
-		this.s = 25;
-		pathogens.push(new bacterium(this.pos.x, this.pos.y, 25, 40));
-	}
-};
+// player.prototype.mitosis = function() {
+// 	if (this.glucose > 0) {
+// 		this.glucose-=0.01;
+// 		this.energy+=0.01;
+// 	}
+// 	if (this.s < 50) {
+// 		this.energy-=0.001;
+// 		this.s+=0.001;
+// 	}else {
+// 		this.s = 25;
+// 		pathogens.push(new bacterium(this.pos.x, this.pos.y, 25, 40));
+// 	}
+// };
 player.prototype.checkForDead = function() {
 	if (this.hp <= 0) {
 		this.hp = 100;

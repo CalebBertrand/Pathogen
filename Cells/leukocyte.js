@@ -2,7 +2,7 @@ var leukocyte = function(X, Y, S, Func, Eats, DoAlways, Counter) {
 	//physics
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
-	this.accel = p5.Vector.random2D();
+	this.accel = p5.Vector.random2D().mult(random(0, 2.5));
 	this.accel.mult(5);
 	this.s = S;
 	this.velLimit = 50 / this.s;
@@ -29,20 +29,10 @@ var leukocyte = function(X, Y, S, Func, Eats, DoAlways, Counter) {
 };
 leukocyte.prototype = Object.create(sarcidine.prototype);
 leukocyte.prototype.update = function() {
-	if (this.foundTarget) {
-		var d = p5.Vector.sub(this.pos, this.target.pos);
-		if (d.mag() < this.range) {
-			this.doOnFind();
-		}else{
-			this.foundTarget = false;
-			this.target = undefined;
-		}
-	}
 	if (this.doAlways) {
 		this.doAlways();
 	}
 };
-
 
 //only used for white blood cells that will chase the pathogens
 leukocyte.prototype.pursue = function() {
@@ -64,11 +54,23 @@ leukocyte.prototype.pursue = function() {
 		}
 	}
 };
+leukocyte.prototype.neurophilSeek = function() {
+	if (this.foundTarget) {
+		var d = p5.Vector.sub(this.pos, this.target.pos);
+		if (d.mag() < this.range) {
+			this.doOnFind();
+		}else{
+			this.foundTarget = false;
+			this.target = undefined;
+		}
+	}
+};
+
 //used for leucocytes that sound the alarm when they find a pathogenic cell (Basophils)
 leukocyte.prototype.alarm = function() {
-
+	nextWave();
 };
-leukocyte.prototype.basophilSeek = function(timestamp) {
+leukocyte.prototype.basophilSeek = function() {
 	var counter = (frameCount + this.counter) % 250;
 	if (counter > 205) {
 		var alpha = map(counter, 205, 250, 1, 0);
@@ -76,7 +78,18 @@ leukocyte.prototype.basophilSeek = function(timestamp) {
 		translate(this.pos.x, this.pos.y);
 		rotate(frameCount / 100);
 		drawingContext.globalAlpha = alpha;
-		image(radar, -100, -100, 200, 200);
+		image(radar, -this.range/2, -this.range/2, this.range, this.range);
 		pop();
+		console.log(this.foundTarget);
+		if (!this.foundTarget) {
+			for (var i = 0; i < pathogens.length; i++) {
+				if (dist(this.pos.x, this.pos.y, pathogens[i].pos.x, pathogens[i].pos.y) < this.range) {
+					this.target = pathogens[i];
+					this.foundTarget = true;
+					this.alarm();
+					break;
+				}
+			}
+		}
 	}
 };
