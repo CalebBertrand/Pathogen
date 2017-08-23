@@ -13,9 +13,9 @@ var statsIsActive = false;
 var updateStats = false;
 var playerStats;
 
-var mapSize = 750;
+var mapSize = 850;
 
-var wave = 1;
+var wave = 0;
 //LEGEND 
 		// B = Basophils
 		// N = Neurophils
@@ -23,7 +23,7 @@ var wave = 1;
 var waves = [{}, 
 			 {B: 3}, 
 			 {N: 1},
-			 {N: 3},
+			 {N: 2 B: 1},
 			 {N: 3, L: 1}, 
 			 {},
 			 {}, 
@@ -31,3 +31,5 @@ var waves = [{},
 			 {}, 
 			 {}
 			];
+//milliseconds between waves
+var waveInterval = 95000;

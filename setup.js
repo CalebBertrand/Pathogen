@@ -21,6 +21,7 @@ function setup() {
 	p1 = new player(calRandomPos(25).x, calRandomPos(25).y, 30, 0.8, 'AwesomeninjaWarrior');
 	pathogens = createPahtogens();
 	pathogens.push(p1);
-	leukocytes = createLeukocytes();
+	// leukocytes = createLeukocytes();
+	leukocytes = [];
 	background(200, 10, 10);
 }

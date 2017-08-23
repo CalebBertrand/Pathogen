@@ -1,4 +1,5 @@
-var leukocyte = function(X, Y, S, Func, Eats, DoAlways, Counter) {
+var leukocyte = function(X, Y, S, Func, Type, DoAlways, Counter) {
+	this.type = Type;
 	//physics
 	this.pos = createVector(X, Y);
 	this.vel = createVector();
@@ -22,7 +23,6 @@ var leukocyte = function(X, Y, S, Func, Eats, DoAlways, Counter) {
 	this.doOnFind = Func;
 	this.range = this.s + 150;
 	this.target = undefined;
-	this.eats = Eats;
 	this.doAlways = DoAlways;
 	//The counter property is used for when there needs to be something unique for each white blood cell that is counted up continuously. See leucocyte.basophilSeek
 	this.counter = Counter;
@@ -39,7 +39,7 @@ leukocyte.prototype.pursue = function() {
 	var d = p5.Vector.sub(this.pos, this.target.pos);
 	var dis = d.mag();
 	if (dis < this.range) {
-		if (dis < this.s/2 && this.eats) {
+		if (dis < this.s/2 && this.type == 'N') {
 			this.target.hp-=0.5;
 		}
 		// this.vel.mult(0.35);
@@ -80,7 +80,6 @@ leukocyte.prototype.basophilSeek = function() {
 		drawingContext.globalAlpha = alpha;
 		image(radar, -this.range/2, -this.range/2, this.range, this.range);
 		pop();
-		console.log(this.foundTarget);
 		if (!this.foundTarget) {
 			for (var i = 0; i < pathogens.length; i++) {
 				if (dist(this.pos.x, this.pos.y, pathogens[i].pos.x, pathogens[i].pos.y) < this.range) {

@@ -3,7 +3,7 @@ $('.shadow-right').css({'height': '0', 'opacity': '0'});
 $('.wave-center').toggle();
 
 function toggleWaveText() {
-	$('.wave-number').html(wave);
+	$('.wave-number').html(wave+1);
 	$('.wave-center').fadeToggle();
 }
 
