@@ -217,7 +217,7 @@ var autoNextWave = setInterval(function() {nextWave();}, waveInterval);
 //functions for WBC's to wander, and also check to find pathogens near them
 var neurophilsHunt = setInterval(function() {
 		for (var i = 0; i < leukocytes.length; i++) {
-			if (this.type == 'N') {
+			if (leukocytes[i].type == 'N') {
 				for (var j = 0; j < pathogens.length; j++) {
 					var d = p5.Vector.sub(leukocytes[i].pos, pathogens[j].pos);
 					if (d.mag() < leukocytes[i].range) {
@@ -257,7 +257,9 @@ function spawn(type, X, Y) {
 	}else if (type == 'N') {
 		wbctype = new leukocyte(X, Y, 100, function() {
 			this.pursue();
-		}, 'N');
+		}, 'N', function() {
+			this.neurophilSeek();
+		});
 	}else if (type == 'L') {
 
 	}
